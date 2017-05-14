@@ -1,6 +1,7 @@
 import {
   LOAD_CARDS,
-  ADD_CARD
+  ADD_CARD,
+  MOVE_CARD
 } from '../actions';
 
 const initialState = {
@@ -20,6 +21,11 @@ const cards = (state = initialState, action) => {
       return Object.assign({}, state, {
         cards : state.cards.concat(action.card)
       });
+
+    case MOVE_CARD:
+      return Object.assign({}, state, {
+        cards : action.card
+      })
 
     default:
       return state;

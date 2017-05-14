@@ -18,6 +18,7 @@ class App extends Component {
 
     this.title = 'Kanban App';
 
+    this.next = this.next.bind(this)
   }
 
   componentWillMount() {
@@ -30,6 +31,10 @@ class App extends Component {
 
   addCard = ( card ) =>{
     this.props.addCard( card );
+  }
+
+  next = ( ) => {
+    console.log('hit');
   }
 
 

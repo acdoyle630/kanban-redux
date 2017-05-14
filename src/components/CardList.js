@@ -1,20 +1,15 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({ cards}) => (
+const CardList = ( {cards} ) => (
+
 <ul>
   {
-    cards.map(({_id, title, priority, status, createdBy, assignedTo}) =>
-      <Card
-        key={_id}
-        title={title}
-        priority={priority}
-        status={status}
-        createdBy={createdBy}
-        assignedTo={assignedTo}
+    cards.map((card) =>
+      <Card card={card}
+        key={card._id}
         />
-      )
-  }
+      ) }
   </ul>
   );
 
