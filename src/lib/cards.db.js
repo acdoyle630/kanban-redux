@@ -1,15 +1,15 @@
 /*jshint esversion: 6*/
 
-const CardsFromFakeDB = [{
+const cardsFromFakeDB = [{
     _id : 1,
     title : 'Get a new tire',
     priority : 'High',
-    status : 'Queue',
+    status : 'In Progress',
     createdBy : 'Adam',
-    assignedTo : 'Adam'
+    assignedTo : 'Adam',
   },
   {
-   id : 2,
+   _id : 2,
     title : 'Laundry',
     priority : 'Medium',
     status : 'Queue',
@@ -17,11 +17,15 @@ const CardsFromFakeDB = [{
     assignedTo : 'Kat'
   },
   {
-   id : 3,
+   _id : 3,
     title : 'Dishes',
     priority : 'Low',
-    status : 'Queue',
+    status : 'Complete',
     createdBy : 'Adam',
     assignedTo : 'Matt'
   }
 ];
+
+export const getCardsFromFakeXHR = () => new Promise ((resolve, reject) => {
+  setTimeout(() => resolve(cardsFromFakeDB), 500);
+});
