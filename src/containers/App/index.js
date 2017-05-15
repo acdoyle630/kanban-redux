@@ -66,13 +66,17 @@ class App extends Component {
               <h3>Queue</h3>
               <CardList cards={queue}/>
             </div>
-            <h3>In Progress</h3>
-            <div id="inProgress">
-              <CardList cards={inProgress}/>
+            <div>
+              <div id="inProgress">
+              <h3>In Progress</h3>
+                <CardList cards={inProgress}/>
+              </div>
             </div>
-            <h3>Complete</h3>
-            <div id="complete">
-              <CardList cards={complete}/>
+            <div>
+              <div id="complete">
+              <h3>Complete</h3>
+                <CardList cards={complete}/>
+              </div>
             </div>
           </div>
         </div>

@@ -23,7 +23,6 @@ export const addCard = card => {
 
 export const moveCard = card => {
 
-    console.log("action Card: ", card)
   return{
     type: MOVE_CARD,
     card

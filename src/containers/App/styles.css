@@ -22,3 +22,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+#list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

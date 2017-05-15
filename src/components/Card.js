@@ -24,7 +24,7 @@ class Card extends Component {
 
   return (
     <li>
-    <h3>{ this.props.card.title }</h3>
+    <h5>{ this.props.card.title }</h5>
     <p>{ this.props.card.priority }</p>
     <p>{ this.props.card.status }</p>
     <p>{ this.props.card.createdBy }</p>
