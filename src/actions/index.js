@@ -5,6 +5,7 @@ export const ADD_CARD = 'ADD_CARD';
 export const MOVE_CARD = 'MOVE_CARD';
 
 export const loadCards = cards => {
+
   return {
     type: LOAD_CARDS,
     cards
@@ -22,6 +23,7 @@ export const addCard = card => {
 
 export const moveCard = card => {
 
+    console.log("action Card: ", card)
   return{
     type: MOVE_CARD,
     card

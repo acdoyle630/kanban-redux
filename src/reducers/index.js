@@ -23,8 +23,11 @@ const cards = (state = initialState, action) => {
       });
 
     case MOVE_CARD:
+      console.log(action.card.status)
+      action.card.status = "In Progress"
+      console.log(state)
       return Object.assign({}, state, {
-        cards : action.card
+        cards: state.cards.concat(action.card)
       })
 
     default:

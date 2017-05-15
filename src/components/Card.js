@@ -11,10 +11,14 @@ class Card extends Component {
 
   }
 
-  moveCardHandle=()=>{
-    console.log(this.props.card._id)
-    //this.props.moveCard("card")
+  moveCardHandler=(  )=>{
+    let card = this.props.card
+    console.log(card)
+    this.props.moveCard(card)
+    // this.props.card.status = "In Progress"
+    // console.log(this.props.card)
     }
+
 
   render(){
 
@@ -26,7 +30,7 @@ class Card extends Component {
     <p>{ this.props.card.createdBy }</p>
     <p>{ this.props.card.assignedTo }</p>
 
-   <button onClick={this.moveCardHandle}>NEXT</button>
+   <button onClick={this.moveCardHandler}>NEXT</button>
   </li>
     )
 
@@ -43,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    moveCard: cards => {
-      dispatch(moveCard(cards))
+    moveCard: card => {
+      dispatch(moveCard(card))
     }
   }
 }
