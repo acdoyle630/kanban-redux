@@ -6,7 +6,7 @@ class NewCardForm extends Component {
     super(props);
 
     this.state = {
-      _id : "",
+      id: this.id,
       title : "",
       priority : "",
       status : "Queue",
@@ -19,7 +19,7 @@ class NewCardForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.addCard(this.state);
+    this.props.addNewCard(this.state);
 
     this.setState({ _id : '', title : '', priority : '', status : '', createdBy : '', assignedTo : '' });
   }

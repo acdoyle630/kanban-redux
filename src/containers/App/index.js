@@ -33,8 +33,21 @@ class App extends Component {
   }
 
 
-  addCard = ( card ) =>{
-    this.props.addCard( card );
+  addNewCard = ( card ) =>{
+    console.log(card)
+    return fetch('/api/cards', {
+      method: "POST",
+      headers:
+      {
+        "Content-Type" : "application/json",
+        "Accept" : "application/json"
+      },
+      body: JSON.stringify(card)
+    }).then( response =>{
+      return(response)
+    }).then((cards) =>{
+      this.props.addCard(card)
+    })
   }
 
   next = ( ) => {
@@ -63,7 +76,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
-          <NewCardForm addCard={this.addCard}/>
+          <NewCardForm addNewCard={this.addNewCard}/>
         </div><br></br><br></br><br></br><br></br><br></br><br></br>
           <div id="list">
             <div id="queue">

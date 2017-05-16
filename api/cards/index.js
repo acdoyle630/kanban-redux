@@ -32,4 +32,12 @@ cards.put('/', (req, res) =>{
   }
 });
 
+
+cards.post('/',(req, res) =>{
+  Card.create(req.body)
+  .then(card => {
+    res.json( card );
+  });
+});
+
 module.exports = cards;
