@@ -18,6 +18,15 @@ class NewCardForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if(this.state.title === "" || undefined){
+      throw new Error('title cannot be empty')
+    }
+    if(this.state.priority === "" || undefined){
+      throw new Error('Priority cannot be empty')
+    }
+    if(this.state.assignedTo === "" || undefined){
+      throw new Error("assigned to cannot be empty")
+    }
 
     this.props.addNewCard(this.state);
 
