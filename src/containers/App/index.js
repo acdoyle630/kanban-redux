@@ -67,7 +67,7 @@ class App extends Component {
       if(allCards[i].status === "In Progress"){
         inProgress.push(allCards[i]);
       }
-      if(allCards[i].status === "Complete"){
+      if(allCards[i].status === "Complete" || allCards[i].status === "Done"){
         complete.push(allCards[i]);
       }
     }

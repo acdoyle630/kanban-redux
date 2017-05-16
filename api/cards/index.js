@@ -40,4 +40,11 @@ cards.post('/',(req, res) =>{
   });
 });
 
+cards.delete('/',(req, res) =>{
+  console.log(req.body);
+  Card.destroy({
+    where: {id: req.body.id}
+  });
+});
+
 module.exports = cards;

@@ -12,6 +12,9 @@ class Card extends Component {
   }
 
   moveCardHandler=(  )=>{
+    if(this.props.card.status === "Done"){
+      this.deleteCard(this.props.card);
+    }
     this.putCard(this.props.card)
     let cardId = this.props.card.id
     this.props.moveCard(cardId)
@@ -34,6 +37,19 @@ class Card extends Component {
     })
   }
 
+  deleteCard(card){
+    console.log(card)
+    fetch('/api/cards', {
+      method : "DELETE",
+      headers:
+      {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body : JSON.stringify(card)
+    })
+    .then(console.log("deleted"))
+  }
 
 
   render(){

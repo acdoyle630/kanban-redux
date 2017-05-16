@@ -30,6 +30,9 @@ const cards = (state = initialState, action) => {
           currentCard = newState[i]
         }
       }
+      if(currentCard.status === "Done"){
+        currentCard.status = "ova"
+      }
       if(currentCard.status === "Complete"){
         currentCard.status = "Done"
       }
