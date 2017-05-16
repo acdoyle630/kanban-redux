@@ -2,6 +2,7 @@
   "name": "kanban-redux",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:6969/",
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
@@ -20,6 +21,7 @@
     "sequelize": "^3.30.4"
   },
   "devDependencies": {
+    "concurrently": "^3.4.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {

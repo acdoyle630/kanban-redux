@@ -12,12 +12,12 @@ class Card extends Component {
   }
 
   moveCardHandler=(  )=>{
-    let card = this.props.card
-    console.log(card)
-    this.props.moveCard(card)
-    // this.props.card.status = "In Progress"
-    // console.log(this.props.card)
-    }
+    let cardId = this.props.card.id
+    console.log(cardId)
+    this.props.moveCard(cardId)
+
+   }
+
 
 
   render(){

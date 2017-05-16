@@ -22,12 +22,16 @@ class App extends Component {
   }
 
   componentWillMount() {
-    getCardsFromFakeXHR()
-    .then( cards => {
-      console.log(cards)
-      this.props.loadCards( cards )
+     fetch('/api/cards', {
+      method: "GET"
+    }).then((response) =>{
+     //console.log(response.json())
+      return response.json()
+    }).then((cards) =>{
+     this.props.loadCards(cards)
     })
   }
+
 
   addCard = ( card ) =>{
     this.props.addCard( card );

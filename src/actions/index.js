@@ -21,10 +21,10 @@ export const addCard = card => {
 
 };
 
-export const moveCard = card => {
+export const moveCard = cardId => {
 
   return{
     type: MOVE_CARD,
-    card
+    cardId
   }
 }
