@@ -12,11 +12,27 @@ class Card extends Component {
   }
 
   moveCardHandler=(  )=>{
+    this.putCard(this.props.card)
     let cardId = this.props.card.id
-    console.log(cardId)
     this.props.moveCard(cardId)
 
    }
+
+// request to database to change status
+  putCard(card){
+    fetch('/api/cards', {
+      method: 'PUT',
+      headers:
+      {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(card)
+    })
+    .catch(err =>{
+      throw err;
+    })
+  }
 
 
 

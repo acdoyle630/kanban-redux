@@ -13,4 +13,23 @@ cards.get('/', (req, res) => {
   });
 });
 
+cards.put('/', (req, res) =>{
+  console.log(req.body);
+  if(req.body.status === "Queue"){
+    Card.update(
+      {status: "In Progress"},
+      {where: {id: req.body.id}});
+    }
+    if(req.body.status === "In Progress"){
+    Card.update(
+      {status: "Complete"},
+      {where: {id: req.body.id}});
+    }
+    if(req.body.status === "Complete"){
+    Card.update(
+      {status: "Done"},
+      {where: {id: req.body.id}});
+  }
+});
+
 module.exports = cards;
