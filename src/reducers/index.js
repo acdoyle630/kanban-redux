@@ -18,6 +18,8 @@ const cards = (state = initialState, action) => {
       });
 
     case ADD_CARD:
+    console.log('hit ADD_CARD')
+    console.log(action.card)
       return Object.assign({}, state, {
         cards : state.cards.concat(action.card)
       });

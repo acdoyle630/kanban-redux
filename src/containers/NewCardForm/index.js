@@ -21,7 +21,7 @@ class NewCardForm extends Component {
 
     this.props.addNewCard(this.state);
 
-    this.setState({ _id : '', title : '', priority : '', status : '', createdBy : '', assignedTo : '' });
+    this.setState({ _id : '', title : '', priority : '', createdBy : '', assignedTo : '' });
   }
 
   handleChangeTitle = (event) => {

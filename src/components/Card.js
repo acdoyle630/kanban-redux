@@ -32,6 +32,7 @@ class Card extends Component {
       },
       body: JSON.stringify(card)
     })
+    .then(console.log("Edited"))
     .catch(err =>{
       throw err;
     })
@@ -49,6 +50,9 @@ class Card extends Component {
       body : JSON.stringify(card)
     })
     .then(console.log("deleted"))
+    .catch(err =>{
+      throw err;
+    })
   }
 
 

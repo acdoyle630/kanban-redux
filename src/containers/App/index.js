@@ -29,6 +29,8 @@ class App extends Component {
       return response.json()
     }).then((cards) =>{
      this.props.loadCards(cards)
+    }).catch(err =>{
+      throw err;
     })
   }
 
@@ -44,9 +46,10 @@ class App extends Component {
       },
       body: JSON.stringify(card)
     }).then( response =>{
-      return(response)
-    }).then((cards) =>{
-      this.props.addCard(card)
+     return(response.json())
+    }).then(response =>{
+      console.log(response)
+      this.props.addCard(response)
     })
   }
 

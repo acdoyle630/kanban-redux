@@ -5,7 +5,11 @@ const router = express.Router();
 
 module.exports = function(sequelize, DataType){
   var Card = sequelize.define("Card", {
-    title: DataType.TEXT,
+    title:
+    {
+      type: DataType.TEXT,
+      allowNull: false
+    },
     priority: DataType.TEXT,
     status: {
       type: DataType.TEXT,
