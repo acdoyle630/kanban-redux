@@ -60,11 +60,11 @@ class Card extends Component {
 
   return (
     <li>
-    <h5>{ this.props.card.title }</h5>
-    <p>{ this.props.card.priority }</p>
-    <p>{ this.props.card.status }</p>
-    <p>{ this.props.card.createdBy }</p>
-    <p>{ this.props.card.assignedTo }</p>
+    <h5>{ `Title: ${this.props.card.title}` }</h5>
+    <p>{ `Priority: ${this.props.card.prioriy}` }</p>
+    <p>{ `Status: ${this.props.card.status}` }</p>
+    <p>{ `Created by: ${this.props.card.createdBy}` }</p>
+    <p>{ `Assigned to: ${this.props.card.assignedTo}` }</p>
 
    <button onClick={this.moveCardHandler}>NEXT</button>
   </li>
