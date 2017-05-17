@@ -40,9 +40,40 @@ class SignUpForm extends Component {
     console.log(user)
     fetch('/api/users', {
       method: "POST",
-      body: user
+       headers:
+      {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(user)
+    }).then(response =>{
+      return(response)
     })
   }
+
+
+  next = ( ) => {
+    console.log('hit');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   render(){
     return (

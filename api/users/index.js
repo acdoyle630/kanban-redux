@@ -7,9 +7,9 @@ const { User } = require('../../models');
 users.post('/',(req, res) =>{
 
   console.log(req.body);
-  // User.create(req.body)
+  User.create(req.body);
   // .then(card => {
-  //   res.json( card );
+  // //   res.json( card );
   // });
 });
 

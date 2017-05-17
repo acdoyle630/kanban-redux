@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = function(sequelize, DataType){
-  var Card = sequelize.define("Card", {
+  var User = sequelize.define("User", {
     username:
     {
       type: DataType.TEXT,
@@ -13,5 +13,5 @@ module.exports = function(sequelize, DataType){
     password: DataType.TEXT,
 
   });
-  return Card;
+  return User;
 };
