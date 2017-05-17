@@ -48,7 +48,6 @@ class App extends Component {
     }).then( response =>{
      return(response.json())
     }).then(response =>{
-      console.log(response)
       this.props.addCard(response)
     })
   }
@@ -70,7 +69,7 @@ class App extends Component {
       if(allCards[i].status === "In Progress"){
         inProgress.push(allCards[i]);
       }
-      if(allCards[i].status === "Complete" || allCards[i].status === "Done"){
+      if(allCards[i].status === "Complete"){
         complete.push(allCards[i]);
       }
     }

@@ -8,23 +8,22 @@ import { connect } from 'react-redux';
 class Card extends Component {
   constructor(props) {
     super(props);
-    console.log('cards')
-    console.log(props)
 
   }
 
   moveCardHandler=(  )=>{
-    if(this.props.card.status === "Done"){
-      this.deleteCard(this.props.card);
-    }
     this.putCard(this.props.card)
     let cardId = this.props.card.id
     this.props.moveCard(cardId)
+     }
 
-   }
+
 
 // request to database to change status
   putCard(card){
+    if(card.status === "Complete"){
+     this.deleteCard(card)
+    }
     fetch('/api/cards', {
       method: 'PUT',
       headers:
@@ -34,14 +33,17 @@ class Card extends Component {
       },
       body: JSON.stringify(card)
     })
-    .then(console.log("Edited"))
+    .then(response =>{
+      return (response.json())
+    })
+    .then(response=>{
+    })
     .catch(err =>{
       throw err;
     })
   }
 
   deleteCard(card){
-    console.log("DELETE: " ,card)
     fetch('/api/cards', {
       method : "DELETE",
       headers:
@@ -52,9 +54,9 @@ class Card extends Component {
       body : JSON.stringify(card)
     })
     .then(console.log("deleted"))
-    .catch(err =>{
-      throw err;
-    })
+    // .catch(err =>{
+    //   throw err;
+    // })
   }
 
 

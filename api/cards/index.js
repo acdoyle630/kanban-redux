@@ -15,20 +15,30 @@ cards.get('/', (req, res) => {
 
 cards.put('/', (req, res) =>{
   console.log(req.body);
+  let promise;
   if(req.body.status === "Queue"){
-    Card.update(
+    promise = Card.update(
       {status: "In Progress"},
       {where: {id: req.body.id}});
-    }
-    if(req.body.status === "In Progress"){
-    Card.update(
+  }
+  else if(req.body.status === "In Progress"){
+    promise = Card.update(
       {status: "Complete"},
       {where: {id: req.body.id}});
-    }
-    if(req.body.status === "Complete"){
-    Card.update(
-      {status: "Done"},
+  }
+  else if(req.body.status === "Complete"){
+    promise = Card.update(
+      {status: "Hide"},
       {where: {id: req.body.id}});
+  }
+  if( promise ){
+    promise.then((data) =>{
+      console.log(data);
+      res.json(data);
+    });
+  }
+  else{
+    res.send(400);
   }
 });
 

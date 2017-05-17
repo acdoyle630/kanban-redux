@@ -11,7 +11,7 @@ class NewCardForm extends Component {
       priority : "",
       status : "Queue",
       createdBy : "",
-      assignedTo : "",
+      assigned_to : "",
     };
 
   }
