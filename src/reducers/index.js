@@ -7,7 +7,10 @@ import {
 
 const initialState = {
   cards : [],
-  userLoggedIn : false
+  user : {
+    username : "",
+    userLoggedIn : false
+  }
 };
 
 
@@ -47,8 +50,13 @@ const cards = (state = initialState, action) => {
       });
 
     case USER_AUTH:
+    console.log(state)
+    console.log(action.user)
       return Object.assign({}, state, {
-        userLoggedIn : true
+        user : {
+          username : action.user.username,
+          userLoggedIn : true
+        }
       })
 
     default:
