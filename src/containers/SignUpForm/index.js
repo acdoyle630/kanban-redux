@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   constructor(props){
     super(props);
 
@@ -11,6 +11,37 @@ class LoginForm extends Component {
       password: ""
     };
 
+  }
+
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.createUsers(this.state)
+      }
+
+  //   this.props.addNewCard(this.state);
+
+  //   this.setState({username : "", password : ""});
+  // }
+
+  handleChangeUsername = (event) => {
+    this.setState({
+      username : event.target.value
+    });
+  }
+
+  handleChangePassword = (event) => {
+    this.setState({
+      password : event.target.value
+    });
+  }
+
+  createUsers(user){
+    console.log(user)
+    fetch('/api/users', {
+      method: "POST",
+      body: user
+    })
   }
 
   render(){
@@ -30,4 +61,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default SignUpForm;
