@@ -83,10 +83,9 @@ passport.use(new LocalStrategy (
   }
 ));
 
-// app.post('/login', passport.authenticate('local', {
-//   successRedirect: '/api',
-//   failureRedirect: '/user/new'
-// }));
+app.post('/login', passport.authenticate('local'),(req,res)=>{
+  console.log('logged in?');
+});
 
 app.use('/api', require('./api'));
 

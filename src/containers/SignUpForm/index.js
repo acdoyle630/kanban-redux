@@ -16,12 +16,16 @@ class SignUpForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log(event.target)
     this.createUsers(this.state)
       }
 
-  //   this.props.addNewCard(this.state);
+  handleLogin=(event)=>{
+    event.preventDefault()
+    console.log(this.state)
+    this.loginUser(this.state)
+  }
 
-  //   this.setState({username : "", password : ""});
   // }
 
   handleChangeUsername = (event) => {
@@ -51,33 +55,25 @@ class SignUpForm extends Component {
     })
   }
 
-
-  next = ( ) => {
-    console.log('hit');
+  loginUser(user){
+    fetch('/login', {
+      method : "POST",
+      credentials : "include",
+      headers:
+      {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
   render(){
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleLogin}>
         <div>
           <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
         </div>
@@ -85,7 +81,7 @@ class SignUpForm extends Component {
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
         </div>
         <div>
-          <button type="submit">Login</button>
+          <button name="Sign-Up" type="submit">login </button>
         </div>
       </form>
     );
