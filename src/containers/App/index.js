@@ -4,6 +4,7 @@ import './styles.css';
 import { connect } from 'react-redux';
 import CardList from '../../components/CardList';
 import NewCardForm from '../NewCardForm';
+import LoginForm from '../LoginForm';
 
 import { loadCards, addCard } from '../../actions';
 
@@ -77,7 +78,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Kanban Board</h2>
+          <div id="LoginForm">
+            <LoginForm/>
+          </div>
           <NewCardForm addNewCard={this.addNewCard}/>
         </div><br></br><br></br><br></br><br></br><br></br><br></br>
           <div id="list">
