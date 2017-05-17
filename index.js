@@ -85,6 +85,7 @@ passport.use(new LocalStrategy (
 
 app.post('/login', passport.authenticate('local'),(req,res)=>{
   console.log('logged in?');
+  res.json({success: true});
 });
 
 app.use('/api', require('./api'));

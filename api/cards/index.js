@@ -5,16 +5,13 @@ const cards = express.Router();
 const { Card } = require('../../models');
 
 cards.get('/', (req, res) => {
-  console.log('hit GET ON DB SERVER');
   Card.all()
   .then((cards) =>{
-    console.log(cards[0].dataValues);
     res.json(cards);
   });
 });
 
 cards.put('/', (req, res) =>{
-  console.log(req.body);
   let promise;
   if(req.body.status === "Queue"){
     promise = Card.update(
@@ -33,7 +30,6 @@ cards.put('/', (req, res) =>{
   }
   if( promise ){
     promise.then((data) =>{
-      console.log(data);
       res.json(data);
     });
   }

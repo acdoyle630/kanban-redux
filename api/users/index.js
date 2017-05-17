@@ -19,7 +19,7 @@ users.post('/',(req, res) =>{
         password : hash
       })
       .then((user) =>{
-        console.log(user);
+        res.json(user);
       });
     });
   });

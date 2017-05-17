@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { userAuth } from '../../actions';
+import { connect } from 'react-redux';
+
 
 
 class SignUpForm extends Component {
@@ -6,7 +9,6 @@ class SignUpForm extends Component {
     super(props);
 
     this.state = {
-      id: this.id,
       usernameLI: "",
       passwordLI: "",
       usernameSI: "",
@@ -19,6 +21,7 @@ class SignUpForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    event.target.reset()
     this.createUsers(
     {
       username : this.state.usernameSI,
@@ -28,6 +31,7 @@ class SignUpForm extends Component {
 
   handleLogin = (event) => {
     event.preventDefault()
+    event.target.reset()
     this.loginUser(
     {
       username : this.state.usernameLI,
@@ -76,7 +80,6 @@ class SignUpForm extends Component {
   }
 
   loginUser(user){
-    console.log(user)
     fetch('/login', {
       method : "POST",
       credentials : "include",
@@ -86,6 +89,10 @@ class SignUpForm extends Component {
         "Accept": "application/json"
       },
       body: JSON.stringify(user)
+    }).then(response =>{
+     if(response.status === 200){
+      this.props.userAuth(user)
+     }
     })
   }
 
@@ -93,6 +100,7 @@ class SignUpForm extends Component {
 
 
   render(){
+    console.log(this.state)
     return (
       <div id="regForm">
         <form onSubmit={this.handleLogin}>
@@ -122,4 +130,28 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.users
+  };
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    userAuth: user => {
+      dispatch(userAuth(user))
+    }
+  }
+}
+
+const ConnectedUser = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUpForm);
+
+
+
+
+export default ConnectedUser;
+

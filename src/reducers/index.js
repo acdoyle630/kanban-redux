@@ -1,16 +1,18 @@
 import {
   LOAD_CARDS,
   ADD_CARD,
-  MOVE_CARD
+  MOVE_CARD,
+  USER_AUTH
 } from '../actions';
 
 const initialState = {
-  cards : []
+  cards : [],
+  userLoggedIn : false
 };
-const cards = (state = initialState, action) => {
-  console.log("state", state);
-  console.log("action", action);
 
+
+const cards = (state = initialState, action) => {
+  console.log(state)
   switch(action.type){
     case LOAD_CARDS:
       return Object.assign({}, state, {
@@ -18,8 +20,6 @@ const cards = (state = initialState, action) => {
       });
 
     case ADD_CARD:
-    console.log('hit ADD_CARD')
-    console.log(action.card)
       return Object.assign({}, state, {
         cards : state.cards.concat(action.card)
       });
@@ -44,6 +44,11 @@ const cards = (state = initialState, action) => {
 
       return Object.assign({}, state, {
         cards: newState
+      });
+
+    case USER_AUTH:
+      return Object.assign({}, state, {
+        userLoggedIn : true
       })
 
     default:

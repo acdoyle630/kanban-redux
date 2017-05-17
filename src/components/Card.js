@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
 
-  }
 
   moveCardHandler=(  )=>{
     this.putCard(this.props.card)

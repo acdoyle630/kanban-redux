@@ -8,7 +8,6 @@ import SignUpForm from '../SignUpForm';
 
 import { loadCards, addCard } from '../../actions';
 
-import { getCardsFromFakeXHR } from '../../lib/cards.db';
 
 
 class App extends Component {
@@ -26,7 +25,6 @@ class App extends Component {
      fetch('/api/cards', {
       method: "GET"
     }).then((response) =>{
-     //console.log(response.json())
       return response.json()
     }).then((cards) =>{
      this.props.loadCards(cards)
