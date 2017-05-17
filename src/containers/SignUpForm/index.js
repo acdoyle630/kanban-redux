@@ -7,41 +7,61 @@ class SignUpForm extends Component {
 
     this.state = {
       id: this.id,
-      username: "",
-      password: ""
+      usernameLI: "",
+      passwordLI: "",
+      usernameSI: "",
+      passwordSI: ""
     };
+
 
   }
 
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target)
-    this.createUsers(this.state)
-      }
-
-  handleLogin=(event)=>{
-    event.preventDefault()
-    console.log(this.state)
-    this.loginUser(this.state)
+    this.createUsers(
+    {
+      username : this.state.usernameSI,
+      password : this.state.passwordSI
+    })
   }
 
-  // }
+  handleLogin = (event) => {
+    event.preventDefault()
+    this.loginUser(
+    {
+      username : this.state.usernameLI,
+      password : this.state.passwordLI
+    })
+  }
+
 
   handleChangeUsername = (event) => {
     this.setState({
-      username : event.target.value
+      usernameLI : event.target.value
     });
   }
 
   handleChangePassword = (event) => {
     this.setState({
-      password : event.target.value
+      passwordLI : event.target.value
     });
   }
 
+  handleChangeUsernameSignUp = (event) => {
+    this.setState({
+      usernameSI : event.target.value
+    });
+  }
+
+  handleChangePasswordSignUp = (event) => {
+    this.setState({
+      passwordSI : event.target.value
+    });
+  }
+
+
   createUsers(user){
-    console.log(user)
     fetch('/api/users', {
       method: "POST",
        headers:
@@ -56,6 +76,7 @@ class SignUpForm extends Component {
   }
 
   loginUser(user){
+    console.log(user)
     fetch('/login', {
       method : "POST",
       credentials : "include",
@@ -73,17 +94,30 @@ class SignUpForm extends Component {
 
   render(){
     return (
-      <form onSubmit={this.handleLogin}>
-        <div>
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
-        </div>
-        <div>
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
-        </div>
-        <div>
-          <button name="Sign-Up" type="submit">login </button>
-        </div>
-      </form>
+      <div id="regForm">
+        <form onSubmit={this.handleLogin}>
+          <div>
+            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
+          </div>
+          <div>
+            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
+          </div>
+          <div>
+            <button name="Login" type="submit">login </button>
+          </div>
+        </form>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsernameSignUp} />
+          </div>
+          <div>
+            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePasswordSignUp} />
+          </div>
+          <div>
+            <button name="Sign-Up" type="submit">Sign Up </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

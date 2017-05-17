@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { user } = db;
+const { User } = db;
 
 //password hashing
 const saltRounds = 10;
@@ -58,7 +58,7 @@ passport.use(new LocalStrategy (
     console.log('runs before serializing');
     User.findOne({
       where: {
-        name: username
+        username: username
       }
     })
     .then ( user => {
