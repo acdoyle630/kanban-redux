@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 class Card extends Component {
   constructor(props) {
     super(props);
+    console.log('cards')
+    console.log(props)
 
   }
 
@@ -39,7 +41,7 @@ class Card extends Component {
   }
 
   deleteCard(card){
-    console.log(card)
+    console.log("DELETE: " ,card)
     fetch('/api/cards', {
       method : "DELETE",
       headers:
@@ -61,10 +63,10 @@ class Card extends Component {
   return (
     <li>
     <h5>{ `Title: ${this.props.card.title}` }</h5>
-    <p>{ `Priority: ${this.props.card.prioriy}` }</p>
+    <p>{ `Priority: ${this.props.card.priority}` }</p>
     <p>{ `Status: ${this.props.card.status}` }</p>
     <p>{ `Created by: ${this.props.card.createdBy}` }</p>
-    <p>{ `Assigned to: ${this.props.card.assignedTo}` }</p>
+    <p>{ `Assigned to: ${this.props.card.assigned_to}` }</p>
 
    <button onClick={this.moveCardHandler}>NEXT</button>
   </li>

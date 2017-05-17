@@ -21,16 +21,10 @@ class NewCardForm extends Component {
     if(this.state.title === "" || undefined){
       throw new Error('title cannot be empty')
     }
-    if(this.state.priority === "" || undefined){
-      throw new Error('Priority cannot be empty')
-    }
-    if(this.state.assignedTo === "" || undefined){
-      throw new Error("assigned to cannot be empty")
-    }
 
     this.props.addNewCard(this.state);
 
-    this.setState({ _id : '', title : '', priority : '', createdBy : '', assignedTo : '' });
+    this.setState({ _id : '', title : '', priority : '', createdBy : '', assigned_to : '' });
   }
 
   handleChangeTitle = (event) => {
@@ -47,7 +41,7 @@ class NewCardForm extends Component {
 
   handleChangeAssignedTo = (event) => {
     this.setState({
-      assignedTo : event.target.value
+      assigned_to : event.target.value
     });
   }
 
@@ -73,7 +67,7 @@ class NewCardForm extends Component {
           <input type="text" placeholder="Priority" value={this.state.priority} onChange={this.handleChangePriority} />
         </div>
         <div>
-          <input type="text" placeholder="Assigned To" value={this.state.assignedTo} onChange={this.handleChangeAssignedTo} />
+          <input type="text" placeholder="Assigned To" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo} />
         </div>
         <div>
           <button type="submit">Add Card</button>
