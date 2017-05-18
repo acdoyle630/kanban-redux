@@ -57,19 +57,21 @@ class App extends Component {
 
 
   render() {
-    let queue = [];
-    let inProgress = [];
-    let complete = [];
-    let allCards = this.props.cards;
-    for (var i = 0; i < allCards.length; i++){
-      if(allCards[i].status === "Queue"){
-        queue.push(allCards[i]);
-      }
-      if(allCards[i].status === "In Progress"){
-        inProgress.push(allCards[i]);
-      }
-      if(allCards[i].status === "Complete"){
-        complete.push(allCards[i]);
+      let queue = [];
+      let inProgress = [];
+      let complete = [];
+      let allCards = this.props.cards;
+    if(this.props.users.userLoggedIn === true){
+      for (var i = 0; i < allCards.length; i++){
+        if(allCards[i].status === "Queue"){
+          queue.push(allCards[i]);
+        }
+        if(allCards[i].status === "In Progress"){
+          inProgress.push(allCards[i]);
+        }
+        if(allCards[i].status === "Complete"){
+          complete.push(allCards[i]);
+        }
       }
     }
     return (
@@ -107,7 +109,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cards: state.cards
+    cards: state.cards,
+    users: state.user
   };
 }
 
