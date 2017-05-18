@@ -2,7 +2,8 @@ import {
   LOAD_CARDS,
   ADD_CARD,
   MOVE_CARD,
-  USER_AUTH
+  USER_AUTH,
+  USER_SIGNOUT
 } from '../actions';
 
 const initialState = {
@@ -50,14 +51,20 @@ const cards = (state = initialState, action) => {
       });
 
     case USER_AUTH:
-    console.log(state)
-    console.log(action.user)
       return Object.assign({}, state, {
         user : {
           username : action.user.username,
           userLoggedIn : true
         }
       })
+
+      case USER_SIGNOUT:
+        return Object.assign({}, state, {
+          user: {
+            username : "",
+            userLoggedIn : false
+          }
+        })
 
     default:
       return state;

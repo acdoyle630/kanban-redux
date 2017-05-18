@@ -91,7 +91,7 @@ app.post('/login', passport.authenticate('local'),(req,res)=>{
 app.get('/logout', function(req, res){
   console.log('hit');
   req.logout();
-  res.json({success: true});
+  res.json({successLogOut: true});
 });
 
 app.use('/api', require('./api'));

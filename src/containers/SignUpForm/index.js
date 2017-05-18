@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { userAuth } from '../../actions';
+import { userAuth, userSignOut } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -92,14 +92,20 @@ class SignUpForm extends Component {
     }).then(response =>{
      if(response.status === 200){
       this.props.userAuth(user)
-     }
+      }
     })
   }
 
-  signOut(){
-    console.log('hitsignout')
+  signOut=()=>{
+    //console.log('hitsignout')
     fetch('/logout', {
       method: "GET"
+    }).then(data =>{
+      return(data.json())
+    }).then(response =>{
+      //sign out action
+      console.log(this)
+      this.props.userSignOut(response)
     })
   }
 
@@ -139,7 +145,7 @@ class SignUpForm extends Component {
 
       return(
         <div>
-        <h3 id="currentUser">Logged in As: {this.props.users.username}</h3>
+        <h3 id="currentUser">Logged in as: {this.props.users.username}</h3>
         <button id="signout" onClick={this.signOut}>
           signout</button>
         </div>
@@ -159,6 +165,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     userAuth: user => {
       dispatch(userAuth(user))
+    },
+    userSignOut: user => {
+      dispatch(userSignOut(user))
     }
   }
 }
