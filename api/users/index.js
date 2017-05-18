@@ -26,4 +26,11 @@ users.post('/',(req, res) =>{
 });
 
 
+users.get('/', (req, res) => {
+  User.all()
+  .then((users) =>{
+    res.json(users);
+  });
+});
+
 module.exports = users;

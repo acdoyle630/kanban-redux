@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+
 
 
 class NewCardForm extends Component {
@@ -13,6 +16,12 @@ class NewCardForm extends Component {
       assigned_to : "",
     };
 
+    this.registeredUsers = [];
+
+  }
+
+  componentWillMount() {
+    this.getAllUsers()
   }
 
   handleSubmit = (event) => {
@@ -25,6 +34,7 @@ class NewCardForm extends Component {
 
     this.setState({ _id : '', title : '', priority : '', created_by : '', assigned_to : '' });
   }
+
 
   handleChangeTitle = (event) => {
     this.setState({
@@ -44,19 +54,24 @@ class NewCardForm extends Component {
     });
   }
 
-  // handleChangeStatus = (event) => {
-  //   this.setState({
-  //     status : event.target.value
-  //   });
-  // }
 
+  getAllUsers(){
+    fetch('/api/users', {
+      method: "GET"
+    }).then((response) =>{
+      return(response.json())
+    }).then(response=>{
+      for(var i=0; i< response.length; i++){
+        this.registeredUsers.push(response[i])
 
-        // <div>
-        //   <input type="text" placeholder="Status" value={this.state.status} onChange={this.handleChangeStatus} />
-        // </div>
+      }
+    })
+  }
+
 
 
   render(){
+    console.log(this.props.users)
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -69,6 +84,17 @@ class NewCardForm extends Component {
           <input type="text" placeholder="Assigned To" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo} />
         </div>
         <div>
+          <input type="text" list="userlist"/>
+            <datalist id="userlist">
+            {
+              this.registeredUsers.map(function(user){
+                return (<option key={user.id}
+                          value={user.username}></option>)
+              })
+            }
+          </datalist>
+        </div>
+        <div>
           <button type="submit">Add Card</button>
         </div>
       </form>
@@ -76,4 +102,14 @@ class NewCardForm extends Component {
   }
 }
 
-export default NewCardForm;
+const mapStateToProps = (state) => {
+  return {
+    users: state.user
+  };
+}
+
+const ConnectedNewCardForm = connect(
+  mapStateToProps,
+)(NewCardForm);
+
+export default ConnectedNewCardForm;
