@@ -100,40 +100,47 @@ class SignUpForm extends Component {
 
 
   render(){
-    console.log(this.state)
-    return (
-      <div id="regForm">
-        <form onSubmit={this.handleLogin}>
-          <div>
-            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
-          </div>
-          <div>
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
-          </div>
-          <div>
-            <button name="Login" type="submit">login </button>
-          </div>
-        </form>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsernameSignUp} />
-          </div>
-          <div>
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePasswordSignUp} />
-          </div>
-          <div>
-            <button name="Sign-Up" type="submit">Sign Up </button>
-          </div>
-        </form>
-      </div>
-    );
+    if(this.props.users.userLoggedIn === false){
+
+      return (
+        <div id="regForm">
+          <form onSubmit={this.handleLogin}>
+            <div>
+              <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsername} />
+            </div>
+            <div>
+              <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword} />
+            </div>
+            <div>
+              <button name="Login" type="submit">login </button>
+            </div>
+          </form>
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleChangeUsernameSignUp} />
+            </div>
+            <div>
+              <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePasswordSignUp} />
+            </div>
+            <div>
+              <button name="Sign-Up" type="submit">Sign Up </button>
+            </div>
+          </form>
+        </div>
+      );
+    } else{
+
+      return(
+        <h3 id="currentUser">Logged in As: {this.props.users.username}</h3>
+        )
+    }
   }
 }
 
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users
+    users: state.user
   };
 }
 

@@ -96,7 +96,7 @@ class App extends Component {
             <SignUpForm/>
           </div>
           <NewCardForm addNewCard={this.addNewCard}/>
-        </div><br></br><br></br><br></br><br></br><br></br><br></br>
+        </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
           <div id="list">
             <div id="queue">
               <h3>Queue</h3>
