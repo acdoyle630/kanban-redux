@@ -96,6 +96,13 @@ class SignUpForm extends Component {
     })
   }
 
+  signOut(){
+    console.log('hitsignout')
+    fetch('/logout', {
+      method: "GET"
+    })
+  }
+
 
 
 
@@ -131,7 +138,11 @@ class SignUpForm extends Component {
     } else{
 
       return(
+        <div>
         <h3 id="currentUser">Logged in As: {this.props.users.username}</h3>
+        <button id="signout" onClick={this.signOut}>
+          signout</button>
+        </div>
         )
     }
   }
