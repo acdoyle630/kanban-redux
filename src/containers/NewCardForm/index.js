@@ -69,6 +69,9 @@ class NewCardForm extends Component {
   }
 
 
+        // <div>
+        //   <input type="text" placeholder="Assigned To" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo} />
+        // </div>
 
   render(){
     console.log(this.props.users)
@@ -81,10 +84,7 @@ class NewCardForm extends Component {
           <input type="text" placeholder="Priority" value={this.state.priority} onChange={this.handleChangePriority} />
         </div>
         <div>
-          <input type="text" placeholder="Assigned To" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo} />
-        </div>
-        <div>
-          <input type="text" list="userlist"/>
+          <input type="text" list="userlist" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo}/>
             <datalist id="userlist">
             {
               this.registeredUsers.map(function(user){
