@@ -36,19 +36,31 @@ class App extends Component {
 
   addNewCard = ( card ) =>{
     console.log(card)
-    return fetch('/api/cards', {
-      method: "POST",
-      headers:
-      {
-        "Content-Type" : "application/json",
-        "Accept" : "application/json"
-      },
-      body: JSON.stringify(card)
-    }).then( response =>{
-     return(response.json())
-    }).then(response =>{
-      this.props.addCard(response)
-    })
+    console.log(this.props.users.username)
+    if(this.props.users.userLoggedIn === true){
+
+      return fetch('/api/cards', {
+        method: "POST",
+        headers:
+        {
+          "Content-Type" : "application/json",
+          "Accept" : "application/json"
+        },
+        body: JSON.stringify({
+          title: card.title,
+          priority: card.priority,
+          status: "Queue",
+          created_by: this.props.users.username,
+          assigned_to: card.assigned_to
+        })
+      }).then( response =>{
+       return(response.json())
+      }).then(response =>{
+        this.props.addCard(response)
+      })
+    } else {
+      console.log('login to see cards')
+    }
   }
 
   next = ( ) => {
@@ -74,6 +86,7 @@ class App extends Component {
         }
       }
     }
+    //user={this.props.users}/>
     return (
       <div className="App">
         <div className="App-header">

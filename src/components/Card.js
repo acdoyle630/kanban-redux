@@ -64,7 +64,7 @@ class Card extends Component {
     <h5>{ `Title: ${this.props.card.title}` }</h5>
     <p>{ `Priority: ${this.props.card.priority}` }</p>
     <p>{ `Status: ${this.props.card.status}` }</p>
-    <p>{ `Created by: ${this.props.card.createdBy}` }</p>
+    <p>{ `Created by: ${this.props.card.created_by}` }</p>
     <p>{ `Assigned to: ${this.props.card.assigned_to}` }</p>
 
    <button onClick={this.moveCardHandler}>NEXT</button>
