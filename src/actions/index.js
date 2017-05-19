@@ -5,6 +5,7 @@ export const ADD_CARD = 'ADD_CARD';
 export const MOVE_CARD = 'MOVE_CARD';
 export const USER_AUTH = 'USER_AUTH';
 export const USER_SIGNOUT = "USER_SIGNOUT";
+export const LOG_ALL_USERS = "LOG_ALL_USERS"
 
 export const loadCards = cards => {
 
@@ -39,9 +40,16 @@ export const userAuth = user =>{
 };
 
 export const userSignOut = user =>{
-  console.log('hit action signout')
   return{
     type : USER_SIGNOUT,
     user
+  };
+};
+
+export const logAllUsers = newUser =>{
+  console.log('hit log all users')
+  return{
+    type : LOG_ALL_USERS,
+    newUser
   }
 }

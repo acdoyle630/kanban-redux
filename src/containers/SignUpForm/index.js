@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { userAuth, userSignOut } from '../../actions';
+import { userAuth, userSignOut, logAllUsers } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -65,7 +65,10 @@ class SignUpForm extends Component {
   }
 
 
+
+
   createUsers(user){
+    console.log(user)
     fetch('/api/users', {
       method: "POST",
        headers:
@@ -76,7 +79,11 @@ class SignUpForm extends Component {
       body: JSON.stringify(user)
     }).then(response =>{
       return(response)
-    })
+    }).then(this.verifyUser(user))
+   }
+
+  verifyUser=(user)=>{
+    this.props.logAllUsers(user)
   }
 
   loginUser(user){
@@ -101,14 +108,12 @@ class SignUpForm extends Component {
   }
 
   signOut=()=>{
-    //console.log('hitsignout')
     fetch('/logout', {
       method: "GET"
     }).then(data =>{
       return(data.json())
     }).then(response =>{
       //sign out action
-      console.log(this)
       this.props.userSignOut(response)
     })
   }
@@ -117,6 +122,7 @@ class SignUpForm extends Component {
 
 
   render(){
+    console.log(this.props.userLog)
     if(this.props.users.logInSuccess === false){
       return(
         <div>
@@ -170,7 +176,8 @@ class SignUpForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.user
+    users: state.user,
+    userLog: state.userLog
   };
 }
 
@@ -181,6 +188,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     userSignOut: user => {
       dispatch(userSignOut(user))
+    },
+    logAllUsers: newUser => {
+      dispatch(logAllUsers(newUser))
     }
   }
 }

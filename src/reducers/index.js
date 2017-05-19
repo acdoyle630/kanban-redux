@@ -3,7 +3,8 @@ import {
   ADD_CARD,
   MOVE_CARD,
   USER_AUTH,
-  USER_SIGNOUT
+  USER_SIGNOUT,
+  LOG_ALL_USERS
 } from '../actions';
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   user : {
     username : "",
     userLoggedIn : false,
-  }
+  },
+  userLog : []
 };
 
 
@@ -66,13 +68,19 @@ const cards = (state = initialState, action) => {
       })
     }
 
-      case USER_SIGNOUT:
-        return Object.assign({}, state, {
-          user: {
-            username : "",
-            userLoggedIn : false
-          }
-        })
+    case USER_SIGNOUT:
+      return Object.assign({}, state, {
+        user: {
+          username : "",
+          userLoggedIn : false
+      }
+    })
+
+    case LOG_ALL_USERS:
+      console.log('hit log in reducser')
+      return Object.assign({}, state, {
+        userLog : state.userLog.concat(action.newUser)
+      });
 
     default:
       return state;
