@@ -69,10 +69,6 @@ class NewCardForm extends Component {
   }
 
 
-        // <div>
-        //   <input type="text" placeholder="Assigned To" value={this.state.assigned_to} onChange={this.handleChangeAssignedTo} />
-        // </div>
-
   render(){
     console.log(this.props.users)
     return (

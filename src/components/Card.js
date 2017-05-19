@@ -60,7 +60,7 @@ class Card extends Component {
   render(){
 
   return (
-    <li>
+    <li className="eachCard">
     <h5>{ `Title: ${this.props.card.title}` }</h5>
     <p>{ `Priority: ${this.props.card.priority}` }</p>
     <p>{ `Status: ${this.props.card.status}` }</p>
