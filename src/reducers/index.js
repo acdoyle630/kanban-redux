@@ -4,7 +4,8 @@ import {
   MOVE_CARD,
   USER_AUTH,
   USER_SIGNOUT,
-  LOG_ALL_USERS
+  LOG_ALL_USERS,
+  LOAD_USERS
 } from '../actions';
 
 const initialState = {
@@ -18,7 +19,6 @@ const initialState = {
 
 
 const cards = (state = initialState, action) => {
-  console.log(state)
   switch(action.type){
     case LOAD_CARDS:
       return Object.assign({}, state, {
@@ -76,11 +76,15 @@ const cards = (state = initialState, action) => {
       }
     })
 
+    case LOAD_USERS:
+      return Object.assign({}, state, {
+        userLog : action.allUsers
+      })
+
     case LOG_ALL_USERS:
-      console.log('hit log in reducser')
       return Object.assign({}, state, {
         userLog : state.userLog.concat(action.newUser)
-      });
+    });
 
     default:
       return state;

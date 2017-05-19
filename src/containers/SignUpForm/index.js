@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { userAuth, userSignOut, logAllUsers } from '../../actions';
+import { userAuth, userSignOut, logAllUsers, loadUsers } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -62,6 +62,18 @@ class SignUpForm extends Component {
     this.setState({
       passwordSI : event.target.value
     });
+  }
+
+  componentWillMount() {
+    fetch('/api/users', {
+      method: "GET"
+    }).then((response) =>{
+      return response.json()
+    }).then((allUsers) =>{
+     this.props.loadUsers(allUsers)
+    }).catch(err =>{
+      throw err;
+    })
   }
 
 
@@ -191,6 +203,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     logAllUsers: newUser => {
       dispatch(logAllUsers(newUser))
+    },
+    loadUsers: allUsers =>{
+      dispatch(loadUsers(allUsers))
     }
   }
 }
