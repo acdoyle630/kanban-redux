@@ -55,7 +55,6 @@ export const logAllUsers = newUser =>{
 };
 
 export const loadUsers = allUsers =>{
-  console.log('hit reducers load users')
   return{
     type : LOAD_USERS,
     allUsers

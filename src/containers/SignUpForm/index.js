@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { userAuth, userSignOut, logAllUsers, loadUsers } from '../../actions';
+import { userAuth, userSignOut, loadUsers } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -15,19 +15,18 @@ class SignUpForm extends Component {
       passwordSI: ""
     };
 
+    this.allUsers;
 
   }
 
 
   handleSubmit = (event) => {
     event.preventDefault();
-    event.target.reset()
-    this.createUsers(
-    {
-      username : this.state.usernameSI,
-      password : this.state.passwordSI
-    })
+    this.verifyUser(this.state.usernameSI, this.state.passwordSI)
+      event.target.reset()
+
   }
+
 
   handleLogin = (event) => {
     event.preventDefault()
@@ -64,38 +63,53 @@ class SignUpForm extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch('/api/users', {
-      method: "GET"
+      method : "GET"
     }).then((response) =>{
-      return response.json()
-    }).then((allUsers) =>{
-     this.props.loadUsers(allUsers)
-    }).catch(err =>{
-      throw err;
-    })
+      return(response.json())
+    }).then(response =>{
+      this.allUsers = response
+    }).then( console.log(this.allUsers))
   }
 
 
 
-
   createUsers(user){
-    console.log(user)
-    fetch('/api/users', {
-      method: "POST",
-       headers:
-      {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(user)
-    }).then(response =>{
-      return(response)
-    }).then(this.verifyUser(user))
-   }
+    //this.verifyUser(user)
+      fetch('/api/users', {
+        method: "POST",
+         headers:
+        {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(user)
+      }).then(response =>{
+        return(response)
+      })
+     }
+        // this.createUsers(
+        //   {
+        //     username : user,
+        //     password : password
+        //   })
 
-  verifyUser=(user)=>{
-    this.props.logAllUsers(user)
+    verifyUser=(user,password)=>{
+      console.log(this.allUsers)
+      let userArray =[]
+      for(var i=0; i<this.allUsers.length; i++){
+        userArray.push(this.allUsers[i].username)
+      }
+      if(userArray.indexOf(user) === -1){
+        this.allUsers.push({username: user})
+        this.createUsers(
+          {
+            username: user,
+            password: password
+          })
+        }
+
   }
 
   loginUser(user){
@@ -134,7 +148,6 @@ class SignUpForm extends Component {
 
 
   render(){
-    console.log(this.props.userLog)
     if(this.props.users.logInSuccess === false){
       return(
         <div>
@@ -200,9 +213,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     userSignOut: user => {
       dispatch(userSignOut(user))
-    },
-    logAllUsers: newUser => {
-      dispatch(logAllUsers(newUser))
     },
     loadUsers: allUsers =>{
       dispatch(loadUsers(allUsers))
