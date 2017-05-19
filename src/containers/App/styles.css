@@ -24,6 +24,10 @@
   to { transform: rotate(360deg); }
 }
 
+#wrongPassword{
+  color: red;
+  border: red 10px solid;
+}
 
 #list {
   display: flex;

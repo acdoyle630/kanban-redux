@@ -10,7 +10,7 @@ const initialState = {
   cards : [],
   user : {
     username : "",
-    userLoggedIn : false
+    userLoggedIn : false,
   }
 };
 
@@ -51,12 +51,20 @@ const cards = (state = initialState, action) => {
       });
 
     case USER_AUTH:
+    if(action.user.logInSuccess === false){
+      return Object.assign({}, state, {
+        user : {
+          logInSuccess : false
+        }
+      })
+    } else {
       return Object.assign({}, state, {
         user : {
           username : action.user.username,
           userLoggedIn : true
         }
       })
+    }
 
       case USER_SIGNOUT:
         return Object.assign({}, state, {

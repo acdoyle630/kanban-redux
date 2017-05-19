@@ -91,7 +91,11 @@ class SignUpForm extends Component {
       body: JSON.stringify(user)
     }).then(response =>{
      if(response.status === 200){
+      //console.log(user)
       this.props.userAuth(user)
+      } else {
+
+        this.props.userAuth({"logInSuccess": false})
       }
     })
   }
@@ -113,6 +117,15 @@ class SignUpForm extends Component {
 
 
   render(){
+    if(this.props.users.logInSuccess === false){
+      return(
+        <div>
+        <h1 id="wrongPassword">WRONG USERNAME/PASSWORD</h1>
+        <button id="signout" onClick={this.signOut}>
+          Try again</button>
+        </div>
+        )
+    }
     if(this.props.users.userLoggedIn === false){
 
       return (
